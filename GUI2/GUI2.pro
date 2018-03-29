@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,12 +27,15 @@ SOURCES += \
         main.cpp \
         registrationwindow.cpp \
     gamecontroller.cpp \
-    mainmenuwindow.cpp
+    mainmenuwindow.cpp \
+    model.cpp
 
 HEADERS += \
         registrationwindow.h \
     gamecontroller.h \
-    mainmenuwindow.h
+    mainmenuwindow.h \
+    model.h \
+    model.h
 
 FORMS += \
         registrationwindow.ui \

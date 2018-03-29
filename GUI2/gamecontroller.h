@@ -4,6 +4,7 @@
 #include <QObject>
 #include "registrationwindow.h"
 #include "mainmenuwindow.h"
+#include "model.h"
 
 class GameController : public QObject
 {
@@ -19,6 +20,7 @@ private:
     MainMenuWindow *mainWindow;
     QSize windowHeight;
     QSize windowWidth;
+    Model *model;
 };
 
 #endif // GAMECONTROLLER_H

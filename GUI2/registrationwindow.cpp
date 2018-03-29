@@ -63,15 +63,13 @@ void RegistrationWindow::paintEvent(QPaintEvent *e)
     auto pixmapRatio = (float)_pixmapBg.width() / _pixmapBg.height();
     auto windowRatio = (float)winSize.width() / winSize.height();
 
-    if(pixmapRatio > windowRatio)
-    {
-    auto newWidth = (int)(winSize.height() * pixmapRatio);
-    auto offset = (newWidth - winSize.width()) / -2;
-    painter.drawPixmap(offset, 0, newWidth, winSize.height(), _pixmapBg);
+    if(pixmapRatio > windowRatio) {
+        auto newWidth = (int)(winSize.height() * pixmapRatio);
+        auto offset = (newWidth - winSize.width()) / -2;
+        painter.drawPixmap(offset, 0, newWidth, winSize.height(), _pixmapBg);
     }
-    else
-    {
-    auto newHeight = (int)(winSize.width() / pixmapRatio);
-    painter.drawPixmap(0, 0, winSize.width(), newHeight, _pixmapBg);
+    else {
+        auto newHeight = (int)(winSize.width() / pixmapRatio);
+        painter.drawPixmap(0, 0, winSize.width(), newHeight, _pixmapBg);
     }
 }
