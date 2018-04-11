@@ -2,6 +2,7 @@
 #define REGISTRATIONWINDOW_H
 
 #include <QWidget>
+#include <string>
 
 namespace Ui {
 class RegistrationWindow;
@@ -13,8 +14,7 @@ class RegistrationWindow : public QWidget
 
 public:
     explicit RegistrationWindow(QWidget *parent = nullptr);
-    int getWidth();
-    int getHeight();
+    std::string getNewName();
     ~RegistrationWindow();
 
 signals:
@@ -22,9 +22,11 @@ signals:
 
 private slots:
     void regButtonClicked();
+    void nickNameInputed(QString nick);
 
 private:
     Ui::RegistrationWindow *ui;
+    std::string newName;
     QPixmap _pixmapBg;
 
     void paintEvent(QPaintEvent *e);
