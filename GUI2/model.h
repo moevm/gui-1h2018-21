@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QSqlTableModel>
 #include <string>
+#include <vector>
 
 class Model {
 
@@ -15,7 +16,11 @@ private:
 public:
    Model();
 
-   bool regUser(std::string& str);
+   bool userExists(std::string str);
+   void regUser(std::string str);
+   std::vector <std::string> getUserNames();
+
+
 };
 
 
