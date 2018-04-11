@@ -59,6 +59,6 @@ void GameController::userNameButtonClicked() {
     mainWindow->resize(UChoiceWindow->width(), UChoiceWindow->height());
     mainWindow->move(UChoiceWindow->pos());
     UChoiceWindow->close();
-    mainWindow->drawCurrentUserName(std::string("dsfdsf"));
+    //mainWindow->drawCurrentUserName(std::string("dsfdsf")); - TO DO
     mainWindow->show();
 }
