@@ -1,75 +1,36 @@
-#include "registrationwindow.h"
-#include "ui_registrationwindow.h"
-#include <QPixmap>
-#include <QPainter>
-#include <QGraphicsEffect>
+#ifndef REGISTRATIONWINDOW_H
+#define REGISTRATIONWINDOW_H
 
+#include <QWidget>
+#include <string>
 
-RegistrationWindow::RegistrationWindow(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::RegistrationWindow)
+namespace Ui {
+class RegistrationWindow;
+}
+
+class RegistrationWindow : public QWidget
 {
-    ui->setupUi(this);
-    _pixmapBg.load(":/resource/img/BG2.jpg");
-    QGraphicsDropShadowEffect *effectWidget = new QGraphicsDropShadowEffect;
-    QGraphicsDropShadowEffect *effectLabel = new QGraphicsDropShadowEffect;
-    QGraphicsDropShadowEffect *effectRegButton = new QGraphicsDropShadowEffect;
+    Q_OBJECT
 
-    effectWidget->setBlurRadius(5);
-    effectWidget->setXOffset(5);
-    effectWidget->setYOffset(5);
-    effectWidget->setColor(Qt::black);
+public:
+    explicit RegistrationWindow(QWidget *parent = nullptr);
+    std::string getNewName();
+    ~RegistrationWindow();
 
-    effectLabel->setBlurRadius(2);
-    effectLabel->setXOffset(2);
-    effectLabel->setYOffset(2);
-    effectLabel->setColor(Qt::black);
+signals:
+    void regButtonSignal();
 
-    effectRegButton->setBlurRadius(2);
-    effectRegButton->setXOffset(3);
-    effectRegButton->setYOffset(2);
-    effectRegButton->setColor(Qt::black);
+private slots:
+    void regButtonClicked();
+    void nickNameInputed(QString nick);
 
-    ui->widget_2->setGraphicsEffect(effectWidget);
-    ui->label->setGraphicsEffect(effectLabel);
-    ui->regButton->setGraphicsEffect(effectRegButton);
+private:
+    Ui::RegistrationWindow *ui;
+    std::string newName;
+    QPixmap _pixmapBg;
 
+    void paintEvent(QPaintEvent *e);
+};
 
-    connect(ui->regButton, SIGNAL(clicked()), this, SLOT(regButtonClicked()));
-}
+#endif // REGISTRATIONWINDOW_H
 
-RegistrationWindow::~RegistrationWindow()
-{
-    delete ui;
-}
-
-void RegistrationWindow::regButtonClicked(){
-    emit regButtonSignal();
-}
-
-int RegistrationWindow::getWidth(){
-    return size().width();
-}
-
-int RegistrationWindow::getHeight(){
-    return size().height();
-}
-
-void RegistrationWindow::paintEvent(QPaintEvent *e)
-{
-    QPainter painter(this);
-
-    auto winSize = size();
-    auto pixmapRatio = (float)_pixmapBg.width() / _pixmapBg.height();
-    auto windowRatio = (float)winSize.width() / winSize.height();
-
-    if(pixmapRatio > windowRatio) {
-        auto newWidth = (int)(winSize.height() * pixmapRatio);
-        auto offset = (newWidth - winSize.width()) / -2;
-        painter.drawPixmap(offset, 0, newWidth, winSize.height(), _pixmapBg);
-    }
-    else {
-        auto newHeight = (int)(winSize.width() / pixmapRatio);
-        painter.drawPixmap(0, 0, winSize.width(), newHeight, _pixmapBg);
-    }
-}
