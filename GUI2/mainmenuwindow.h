@@ -13,8 +13,7 @@ class MainMenuWindow : public QWidget
 
 public:
     explicit MainMenuWindow(QWidget *parent = nullptr);
-    int getWidth();
-    int getHeight();
+    void drawCurrentUserName(std::string userName); // to do
     ~MainMenuWindow();
 
 private:
@@ -24,3 +23,4 @@ private:
 };
 
 #endif // MAINMENUWINDOW_H
+
