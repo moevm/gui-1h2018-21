@@ -16,21 +16,41 @@ Model::Model() {
     }
 }
 
-//sign up or sign in method
-bool Model::regUser(std::string& str) {
-    QSqlQuery query = QSqlQuery(dataBase);
+bool Model::userExists(std::string str) {
+    QSqlQuery query = QSqlQuery("SELECT user_name FROM highscores");
 
     while(query.next()) {
         if(query.value(0) == QString::fromStdString(str)) {
-            return true; //if sign in
+            return true; //if user exists
         }
     }
 
-    //prepare query to execution
-    query.prepare("INSERT INTO highscores (user_name)"
-               "VALUES (:user_name)");
-    query.bindValue(":user_name", QString::fromStdString(str));
-    query.exec();
-
-    return false; //if sign up
+    return false; //if user does not exist
 }
+
+std::vector <std::string> Model::getUserNames() {
+    QSqlQuery query = QSqlQuery("SELECT user_name FROM highscores");
+
+    std::vector <std::string> userNames;
+
+    while(query.next()) {
+        QString string = query.value(0).toString();
+        userNames.push_back(string.toStdString());
+    }
+
+    return userNames;
+}
+
+void Model::regUser(std::string str) {
+    QSqlQuery query = QSqlQuery(dataBase);
+
+    //prepare query to execution
+    query.prepare("INSERT INTO highscores (user_name, high_score)"
+               "VALUES (:user_name, :high_score)");
+    query.bindValue(":user_name", QString::fromStdString(str));
+    query.bindValue(":high_score", 0);
+    query.exec();
+}
+
+
+

@@ -1,9 +1,15 @@
 #include "gamecontroller.h"
+#include <QDebug>
+#include <iostream>
+#include <vector>
+#include <string>
+
 
 GameController::GameController(QObject *parent) : QObject(parent) {
     regWindow = new RegistrationWindow();
     mainWindow = new MainMenuWindow();
     model = new Model();
+
 
     bool usersAvaliable = false; // наличие зарегистрированных пользователей проверяется через модель(базу данных)
 
