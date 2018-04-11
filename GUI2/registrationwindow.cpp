@@ -1,36 +1,77 @@
-#ifndef REGISTRATIONWINDOW_H
-#define REGISTRATIONWINDOW_H
+#include "registrationwindow.h"
+#include "ui_registrationwindow.h"
+#include <QPixmap>
+#include <QPainter>
+#include <QGraphicsEffect>
 
-#include <QWidget>
-#include <string>
 
-namespace Ui {
-class RegistrationWindow;
+RegistrationWindow::RegistrationWindow(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::RegistrationWindow)
+{
+    ui->setupUi(this);
+    _pixmapBg.load(":/resource/img/BG2.jpg");
+    QGraphicsDropShadowEffect *effectWidget = new QGraphicsDropShadowEffect;
+    QGraphicsDropShadowEffect *effectLabel = new QGraphicsDropShadowEffect;
+    QGraphicsDropShadowEffect *effectRegButton = new QGraphicsDropShadowEffect;
+
+    effectWidget->setBlurRadius(5);
+    effectWidget->setXOffset(5);
+    effectWidget->setYOffset(5);
+    effectWidget->setColor(Qt::black);
+
+    effectLabel->setBlurRadius(2);
+    effectLabel->setXOffset(2);
+    effectLabel->setYOffset(2);
+    effectLabel->setColor(Qt::black);
+
+    effectRegButton->setBlurRadius(2);
+    effectRegButton->setXOffset(3);
+    effectRegButton->setYOffset(2);
+    effectRegButton->setColor(Qt::black);
+
+    ui->widget_2->setGraphicsEffect(effectWidget);
+    ui->label->setGraphicsEffect(effectLabel);
+    ui->regButton->setGraphicsEffect(effectRegButton);
+
+
+    connect(ui->nicknameInput, SIGNAL(textChanged(QString)), this, SLOT(nickNameInputed(QString)));
+    connect(ui->regButton, SIGNAL(clicked()), this, SLOT(regButtonClicked()));
 }
 
-class RegistrationWindow : public QWidget
+RegistrationWindow::~RegistrationWindow()
 {
-    Q_OBJECT
+    delete ui;
+}
 
-public:
-    explicit RegistrationWindow(QWidget *parent = nullptr);
-    std::string getNewName();
-    ~RegistrationWindow();
+void RegistrationWindow::regButtonClicked(){
+    emit regButtonSignal();
+}
 
-signals:
-    void regButtonSignal();
+void RegistrationWindow::nickNameInputed(QString nick){
+    newName = nick.toUtf8().constData();
+}
 
-private slots:
-    void regButtonClicked();
-    void nickNameInputed(QString nick);
 
-private:
-    Ui::RegistrationWindow *ui;
-    std::string newName;
-    QPixmap _pixmapBg;
+std::string RegistrationWindow::getNewName(){
+    return newName;
+}
 
-    void paintEvent(QPaintEvent *e);
-};
+void RegistrationWindow::paintEvent(QPaintEvent *e)
+{
+    QPainter painter(this);
 
-#endif // REGISTRATIONWINDOW_H
+    auto winSize = size();
+    auto pixmapRatio = (float)_pixmapBg.width() / _pixmapBg.height();
+    auto windowRatio = (float)winSize.width() / winSize.height();
 
+    if(pixmapRatio > windowRatio) {
+        auto newWidth = (int)(winSize.height() * pixmapRatio);
+        auto offset = (newWidth - winSize.width()) / -2;
+        painter.drawPixmap(offset, 0, newWidth, winSize.height(), _pixmapBg);
+    }
+    else {
+        auto newHeight = (int)(winSize.width() / pixmapRatio);
+        painter.drawPixmap(0, 0, winSize.width(), newHeight, _pixmapBg);
+    }
+}
