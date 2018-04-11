@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "registrationwindow.h"
+#include "userchoicewindow.h"
 #include "mainmenuwindow.h"
 #include "model.h"
 
@@ -14,10 +15,14 @@ public:
 
 private slots:
     void regConfirmed();
+    void addNewUserButtonClicked();
+    void userNameButtonClicked();
 
 private:
+    UserChoiceWindow *UChoiceWindow;
     RegistrationWindow *regWindow;
     MainMenuWindow *mainWindow;
+
     QSize windowHeight;
     QSize windowWidth;
     Model *model;
