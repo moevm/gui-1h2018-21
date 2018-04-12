@@ -12,7 +12,7 @@ GameController::GameController(QObject *parent) : QObject(parent) {
 
     bool usersAvaliable = false; // наличие зарегистрированных пользователей проверяется через модель(базу данных)
 
-    std::vector userNamesVec = model->getUserNames();
+    std::vector<std::string> userNamesVec = model->getUserNames();
 
         if(userNamesVec.size() != 0) {
             UChoiceWindow->show();
