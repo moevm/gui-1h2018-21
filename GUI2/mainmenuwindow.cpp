@@ -58,7 +58,7 @@ MainMenuWindow::~MainMenuWindow()
 
 void MainMenuWindow::drawCurrentUserName(std::string userName){ // to do
     QString qUserName = QString::fromStdString(userName);
-    ui->label_2->setText(qUserName);
+    //ui->label_2->setText(qUserName);
 }
 
 
