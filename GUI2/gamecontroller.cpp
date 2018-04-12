@@ -1,26 +1,27 @@
 #include "gamecontroller.h"
-#include <QDebug>
 #include <iostream>
-#include <vector>
-#include <string>
 #include <QMessageBox>
 
+using namespace std;
 
 GameController::GameController(QObject *parent) : QObject(parent) {
     regWindow = new RegistrationWindow();
     mainWindow = new MainMenuWindow();
     UChoiceWindow = new UserChoiceWindow();
     model = new Model();
-    std::vector userNamesVec = model-<getUserNames();
 
-    if(userNamesVec.size() != 0) {
-        UChoiceWindow->show();
-        for(int i = 0; i < userNamesVec.size(); i){
-            UChoiceWindow->addUserNameButton(userNamesVec[i]);
+    bool usersAvaliable = false; // наличие зарегистрированных пользователей проверяется через модель(базу данных)
+
+    std::vector userNamesVec = model->getUserNames();
+
+        if(userNamesVec.size() != 0) {
+            UChoiceWindow->show();
+            for(int i = 0; i < userNamesVec.size(); i++){
+                UChoiceWindow->addUserNameButton(userNamesVec[i]);
+            }
         }
-    }
-    else {
-        regWindow->show();
+        else {
+            regWindow->show();
     }
 
     connect(regWindow, SIGNAL(regButtonSignal()), this, SLOT(regConfirmed()));

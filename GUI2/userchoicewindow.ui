@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>UserChoiceWindow</class>
  <widget class="QWidget" name="UserChoiceWindow">
@@ -21,8 +21,8 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton{
-	border: 0px;
-	cursor: pointer;
+        border: 0px;
+        cursor: pointer;
 }
 #widget_2{
 background-color: rgb(232, 160, 171);
@@ -37,7 +37,6 @@ QScrollBar:vertical{
 background-color: rgb(112, 38, 103);
 border-color: rgb(213, 163, 207)
 }
-
  QScrollBar::add-line:vertical {
     border: 1px solid grey;
   background-color: rgb(241, 241, 241);
@@ -45,8 +44,6 @@ border-color: rgb(213, 163, 207)
     subcontrol-position: bottom;
     subcontrol-origin: margin;
 }
-
-
 QScrollBar::sub-line:vertical {
     border: 1px solid grey;
     background-color: rgb(213, 163, 207);
@@ -173,3 +170,4 @@ QScrollBar::sub-line:vertical {
  <resources/>
  <connections/>
 </ui>
+

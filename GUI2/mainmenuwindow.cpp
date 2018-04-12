@@ -56,13 +56,11 @@ MainMenuWindow::~MainMenuWindow()
     delete ui;
 }
 
-int MainMenuWindow::getWidth(){
-    return size().width();
+void MainMenuWindow::drawCurrentUserName(std::string userName){ // to do
+    QString qUserName = QString::fromStdString(userName);
+    ui->label_2->setText(qUserName);
 }
 
-int MainMenuWindow::getHeight(){
-    return size().height();
-}
 
 void MainMenuWindow::paintEvent(QPaintEvent *e)
 {

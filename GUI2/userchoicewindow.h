@@ -1,4 +1,4 @@
-#ifndef USERCHOICEWINDOW_H
+﻿#ifndef USERCHOICEWINDOW_H
 #define USERCHOICEWINDOW_H
 
 #include <QWidget>

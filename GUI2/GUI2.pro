@@ -28,18 +28,21 @@ SOURCES += \
         registrationwindow.cpp \
     gamecontroller.cpp \
     mainmenuwindow.cpp \
-    model.cpp
+    model.cpp \
+    userchoicewindow.cpp
 
 HEADERS += \
         registrationwindow.h \
     gamecontroller.h \
     mainmenuwindow.h \
     model.h \
-    model.h
+    model.h \
+    userchoicewindow.h
 
 FORMS += \
         registrationwindow.ui \
-    mainmenuwindow.ui
+    mainmenuwindow.ui \
+    userchoicewindow.ui
 
 RESOURCES += \
     gameresources.qrc
