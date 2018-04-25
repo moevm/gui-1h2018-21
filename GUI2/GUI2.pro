@@ -29,7 +29,8 @@ SOURCES += \
     gamecontroller.cpp \
     mainmenuwindow.cpp \
     model.cpp \
-    userchoicewindow.cpp
+    userchoicewindow.cpp \
+    gamescreenview.cpp
 
 HEADERS += \
         registrationwindow.h \
@@ -37,7 +38,8 @@ HEADERS += \
     mainmenuwindow.h \
     model.h \
     model.h \
-    userchoicewindow.h
+    userchoicewindow.h \
+    gamescreenview.h
 
 FORMS += \
         registrationwindow.ui \
