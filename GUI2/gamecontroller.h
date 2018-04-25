@@ -2,10 +2,13 @@
 #define GAMECONTROLLER_H
 
 #include <QObject>
+#include <QKeyEvent>
 #include "registrationwindow.h"
 #include "userchoicewindow.h"
 #include "mainmenuwindow.h"
+#include "gamescreenview.h"
 #include "model.h"
+#include "player.h"
 
 class GameController : public QObject
 {
@@ -17,11 +20,14 @@ private slots:
     void regConfirmed();
     void addNewUserButtonClicked();
     void userNameButtonClicked();
+    void openGameScreen();
 
 private:
-    UserChoiceWindow *UChoiceWindow;
+    UserChoiceWindow *uChoiceWindow;
     RegistrationWindow *regWindow;
     MainMenuWindow *mainWindow;
+    GameScreenView *gameScreen;
+    //Player *player;
 
     QSize windowHeight;
     QSize windowWidth;

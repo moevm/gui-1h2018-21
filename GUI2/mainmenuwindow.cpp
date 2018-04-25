@@ -45,10 +45,11 @@ MainMenuWindow::MainMenuWindow(QWidget *parent) :
 
   ui->widget_2->setGraphicsEffect(effectWidget);
   ui->label->setGraphicsEffect(effectLabel);
-  ui->pushButton->setGraphicsEffect(effectButton1);
-  ui->pushButton_2->setGraphicsEffect(effectButton2);
-  ui->pushButton_3->setGraphicsEffect(effectButton3);
+  ui->goButton->setGraphicsEffect(effectButton1);
+  ui->exitButton->setGraphicsEffect(effectButton3);
+  ui->recButton->setGraphicsEffect(effectButton2);
 
+  connect(ui->goButton, SIGNAL(clicked()), this, SLOT(goButtonClicked()));
 }
 
 MainMenuWindow::~MainMenuWindow()
@@ -61,6 +62,9 @@ void MainMenuWindow::drawCurrentUserName(std::string userName){ // to do
     //ui->label_2->setText(qUserName);
 }
 
+void MainMenuWindow::goButtonClicked(){
+     emit goButtonSignal();
+}
 
 void MainMenuWindow::paintEvent(QPaintEvent *e)
 {

@@ -16,6 +16,12 @@ public:
     void drawCurrentUserName(std::string userName); // to do
     ~MainMenuWindow();
 
+signals:
+    void goButtonSignal();
+
+private slots:
+    void goButtonClicked();
+
 private:
     Ui::MainMenuWindow *ui;
     QPixmap _pixmapBg;

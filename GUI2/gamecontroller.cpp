@@ -7,26 +7,26 @@ using namespace std;
 GameController::GameController(QObject *parent) : QObject(parent) {
     regWindow = new RegistrationWindow();
     mainWindow = new MainMenuWindow();
-    UChoiceWindow = new UserChoiceWindow();
+    uChoiceWindow = new UserChoiceWindow();
+    gameScreen= new GameScreenView();
     model = new Model();
-
-    bool usersAvaliable = false; // наличие зарегистрированных пользователей проверяется через модель(базу данных)
 
     std::vector<std::string> userNamesVec = model->getUserNames();
 
         if(userNamesVec.size() != 0) {
-            UChoiceWindow->show();
+            uChoiceWindow->show();
             for(int i = 0; i < userNamesVec.size(); i++){
-                UChoiceWindow->addUserNameButton(userNamesVec[i]);
+                uChoiceWindow->addUserNameButton(userNamesVec[i]);
             }
         }
         else {
             regWindow->show();
-    }
+        }
 
     connect(regWindow, SIGNAL(regButtonSignal()), this, SLOT(regConfirmed()));
-    connect(UChoiceWindow, SIGNAL(addUserButtonSignal()), SLOT(addNewUserButtonClicked()));
-    connect(UChoiceWindow, SIGNAL(userNameButtonSignal()), SLOT(userNameButtonClicked()));
+    connect(uChoiceWindow, SIGNAL(addUserButtonSignal()), SLOT(addNewUserButtonClicked()));
+    connect(uChoiceWindow, SIGNAL(userNameButtonSignal()), SLOT(userNameButtonClicked()));
+    connect(mainWindow, SIGNAL(goButtonSignal()), SLOT(openGameScreen()));
 }
 
 void GameController::regConfirmed() {
@@ -43,18 +43,24 @@ void GameController::regConfirmed() {
     }
 }
 
-void GameController::addNewUserButtonClicked() {
-    regWindow->resize(UChoiceWindow->width(), UChoiceWindow->height());
-    regWindow->move(UChoiceWindow->pos());
-    UChoiceWindow->close();
+void GameController::addNewUserButtonClicked() { // pushing button "Enter" in registration window
+    regWindow->resize(uChoiceWindow->width(), uChoiceWindow->height());
+    regWindow->move(uChoiceWindow->pos());
+    uChoiceWindow->close();
     regWindow->show();
 
 }
 
-void GameController::userNameButtonClicked() {
-    mainWindow->resize(UChoiceWindow->width(), UChoiceWindow->height());
-    mainWindow->move(UChoiceWindow->pos());
-    UChoiceWindow->close();
+void GameController::userNameButtonClicked() { // click to name of the user in user choice window
+    mainWindow->resize(uChoiceWindow->width(), uChoiceWindow->height());
+    mainWindow->move(uChoiceWindow->pos());
+    uChoiceWindow->close();
     //mainWindow->drawCurrentUserName(std::string("dsfdsf")); - TO DO
     mainWindow->show();
 }
+
+void GameController::openGameScreen() { // click to name of the user in user choice window
+    mainWindow->close();
+    gameScreen->showFullScreen();
+}
+

@@ -152,7 +152,7 @@ border: 3px solid rgb(0, 19, 86);
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="goButton">
            <property name="font">
             <font>
              <family>Bitstream Vera Sans</family>
@@ -171,7 +171,7 @@ border: 3px solid rgb(0, 19, 86);
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="recButton">
            <property name="font">
             <font>
              <family>Bitstream Vera Sans</family>
@@ -190,13 +190,12 @@ border: 3px solid rgb(0, 19, 86);
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="exitButton">
            <property name="font">
             <font>
              <family>Bitstream Vera Sans</family>
              <pointsize>14</pointsize>
              <weight>75</weight>
-             <italic>false</italic>
              <bold>true</bold>
             </font>
            </property>
@@ -204,7 +203,7 @@ border: 3px solid rgb(0, 19, 86);
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
-            <string>Exit</string>
+            <string>PushButton</string>
            </property>
           </widget>
          </item>
