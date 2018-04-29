@@ -8,7 +8,6 @@
 #include "mainmenuwindow.h"
 #include "gamescreenview.h"
 #include "model.h"
-#include "player.h"
 
 class GameController : public QObject
 {
@@ -27,7 +26,6 @@ private:
     RegistrationWindow *regWindow;
     MainMenuWindow *mainWindow;
     GameScreenView *gameScreen;
-    //Player *player;
 
     QSize windowHeight;
     QSize windowWidth;
