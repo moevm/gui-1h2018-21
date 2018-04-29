@@ -1,18 +1,22 @@
 #include "gamescreenview.h"
-#include "iostream"
 
 
 GameScreenView::GameScreenView(QWidget *parent)
 {
-
-        pixmapCar = new QGraphicsPixmapItem(QPixmap::fromImage(QImage(":/resource/img/Car.png")));
-        pixmapCar->setScale(0.3);
-
+        car = new CarItem();
         scene = new QGraphicsScene();
-        scene->setSceneRect(this->width()/2, 0, this->width(), this->height());
+        sceneLenght = 6000;
+
+        sceneBackground.load(":/resource/img/GamePic.jpg");
+
+        scene->addItem(car);
+        scene->setSceneRect(0, 0, sceneLenght, getDesktopHeight());
+
+        scene->setBackgroundBrush(sceneBackground.scaledToHeight(scene->height()));
+
+
         this->setScene(scene);
-        std::cout << pos().x() << ", " << pos().y() << std::endl;
-        scene->addItem(pixmapCar);
+
 
 }
 
@@ -20,16 +24,32 @@ void GameScreenView::keyPressEvent(QKeyEvent *keyEvent){
 
     switch (keyEvent->key()) {
         case Qt::Key_Down:
-            pixmapCar->moveBy(0, 10);
+            car->moveBy(0, car->getMovementSpeed());
             break;
         case Qt::Key_Up:
-            pixmapCar->moveBy(0, -10);
+            car->moveBy(0, -car->getMovementSpeed());
             break;
         default:
             break;
     }
 }
 
+int GameScreenView::getDesktopHeight(){
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    return height;
+}
+
+void GameScreenView::setSceneLength(int len)
+{
+    sceneLenght = len;
+}
+
+int GameScreenView::getSceneLength()
+{
+    return sceneLenght;
+}
 
 GameScreenView::~GameScreenView(){
 
