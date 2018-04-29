@@ -30,7 +30,8 @@ SOURCES += \
     mainmenuwindow.cpp \
     model.cpp \
     userchoicewindow.cpp \
-    gamescreenview.cpp
+    gamescreenview.cpp \
+    caritem.cpp
 
 HEADERS += \
         registrationwindow.h \
@@ -39,7 +40,8 @@ HEADERS += \
     model.h \
     model.h \
     userchoicewindow.h \
-    gamescreenview.h
+    gamescreenview.h \
+    caritem.h
 
 FORMS += \
         registrationwindow.ui \
