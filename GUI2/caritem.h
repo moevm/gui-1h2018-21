@@ -8,6 +8,7 @@
 
 class CarItem : public QGraphicsPixmapItem
 {
+
 public:
     CarItem();
     void setMovementSpeed(double speed);
@@ -15,6 +16,8 @@ public:
 
 private:
     double movementSpeed;
+   // void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
 };
 
 #endif // CARITEM_H
