@@ -8,13 +8,6 @@ GameScreenView::GameScreenView(QWidget *parent)
         sceneTimer = new QTimer();
         scene = new QGraphicsScene();
 
-
-        for(int i=0; i<coinsNumber;i++){
-            coins.push_back(new CoinItem());
-            coins[i]->setPos(i*100, 500);
-        }
-
-
         sceneMovementSpeed = 10;
         coinsNumber = 3;
         sceneTimerRate = 200;
@@ -22,13 +15,19 @@ GameScreenView::GameScreenView(QWidget *parent)
         coinVecIndex = 0;
         currentScore = 0;
 
+        for(int i=0; i<coinsNumber;i++){
+            coins.push_back(new CoinItem());
+            coins[i]->setPos(i*100, 500);
+        }
+
+
         sceneBackground.load(":/resource/img/GamePic.jpg");
 
         scene->addItem(car);
         for(int i=0; i<coinsNumber; i++)
             scene->addItem(coins[i]);
 
-        scene->setSceneRect(0, 0, sceneLenght, 700);
+        scene->setSceneRect(0, 0, sceneLenght, getDesktopHeight()-2);
         scene->setBackgroundBrush(sceneBackground.scaledToHeight(scene->height()));
 
         this->setScene(scene);
