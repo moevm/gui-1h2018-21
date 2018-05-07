@@ -13,6 +13,9 @@
 #include <QScrollBar>
 #include "caritem.h"
 #include "coinitem.h"
+#include "winlabelitem.h"
+#include <stdlib.h>
+#include <time.h>
 
 class GameScreenView: public QGraphicsView
 {
@@ -22,28 +25,39 @@ public:
     int getDesktopHeight();
     int getDesktopWidth();
     void setSceneLength(int len);
+    void putCoins();
+    void wheelEvent(QWheelEvent * event);
     int getSceneLength();
+
     ~GameScreenView();
 
 public slots:
     void updateCoinImage();
     void updateSceneState();
+    void updateAcceleration();
 
 private:
     QGraphicsScene *scene;
     CarItem *car;
+    WinLabelItem *winLabel;
     QTimer *coinTimer;
     QTimer *sceneTimer;
+    QTimer *accelerationTimer;
     QPixmap sceneBackground;
     std::vector<CoinItem*> coins;
 
     int sceneMovementSpeed;
+    int sceneAcceleration;
     int coinsNumber;
     int currentScore;
     int coinPoints;
     int sceneTimerRate;
+    int accelerationTimerRate;
     unsigned int coinVecIndex;
     int sceneLenght;
+    bool upCarMovementIsBlocked;
+    bool downCarMovementIsBlocked;
+
     void keyPressEvent(QKeyEvent *keyEvent);
 };
 

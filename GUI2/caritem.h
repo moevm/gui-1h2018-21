@@ -16,7 +16,6 @@ public:
 
 private:
     double movementSpeed;
-   // void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 };
 

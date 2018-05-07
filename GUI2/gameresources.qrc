@@ -8,5 +8,6 @@
         <file>img/coin2.png</file>
         <file>img/coin3.png</file>
         <file>img/coin4.png</file>
+        <file>img/winLabel.png</file>
     </qresource>
 </RCC>
