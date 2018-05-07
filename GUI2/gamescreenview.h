@@ -16,6 +16,7 @@
 #include "winlabelitem.h"
 #include <stdlib.h>
 #include <time.h>
+#include "numberitem.h"
 
 class GameScreenView: public QGraphicsView
 {
@@ -24,11 +25,12 @@ public:
     explicit GameScreenView(QWidget *parent = 0);
     int getDesktopHeight();
     int getDesktopWidth();
-    void setSceneLength(int len);
-    void putCoins();
-    void wheelEvent(QWheelEvent * event);
     int getSceneLength();
-
+    void setSceneLength(int len);
+    void putScoreCounter();
+    void putCoins();
+    void changeScoreCounter();
+    void wheelEvent(QWheelEvent * event);
     ~GameScreenView();
 
 public slots:
@@ -38,6 +40,7 @@ public slots:
 
 private:
     QGraphicsScene *scene;
+    QGraphicsItemGroup *scoreItemGroup;
     CarItem *car;
     WinLabelItem *winLabel;
     QTimer *coinTimer;
@@ -45,6 +48,7 @@ private:
     QTimer *accelerationTimer;
     QPixmap sceneBackground;
     std::vector<CoinItem*> coins;
+    std::vector<NumberItem*> scoreNumsVector;
 
     int sceneMovementSpeed;
     int sceneAcceleration;
@@ -54,9 +58,11 @@ private:
     int sceneTimerRate;
     int accelerationTimerRate;
     unsigned int coinVecIndex;
-    int sceneLenght;
+    int sceneLength;
+    int scoreLength;
     bool upCarMovementIsBlocked;
     bool downCarMovementIsBlocked;
+
 
     void keyPressEvent(QKeyEvent *keyEvent);
 };

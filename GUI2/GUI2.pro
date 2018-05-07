@@ -33,7 +33,8 @@ SOURCES += \
     gamescreenview.cpp \
     caritem.cpp \
     coinitem.cpp \
-    winlabelitem.cpp
+    winlabelitem.cpp \
+    numberitem.cpp
 
 HEADERS += \
         registrationwindow.h \
@@ -45,7 +46,8 @@ HEADERS += \
     gamescreenview.h \
     caritem.h \
     coinitem.h \
-    winlabelitem.h
+    winlabelitem.h \
+    numberitem.h
 
 FORMS += \
         registrationwindow.ui \

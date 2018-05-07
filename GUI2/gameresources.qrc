@@ -9,5 +9,15 @@
         <file>img/coin3.png</file>
         <file>img/coin4.png</file>
         <file>img/winLabel.png</file>
+        <file>img/number0.png</file>
+        <file>img/number1.png</file>
+        <file>img/number2.png</file>
+        <file>img/number3.png</file>
+        <file>img/number4.png</file>
+        <file>img/number5.png</file>
+        <file>img/number6.png</file>
+        <file>img/number7.png</file>
+        <file>img/number8.png</file>
+        <file>img/number9.png</file>
     </qresource>
 </RCC>

@@ -1,6 +1,5 @@
 #include "winlabelitem.h"
 
-
 WinLabelItem::WinLabelItem(int desktopHeight, int desktopWidth)
 {
     setScale(1.5);
