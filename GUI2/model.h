@@ -1,10 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include <QSqlDatabase>
-#include <QSqlError>
-#include <QSqlQuery>
-#include <QSqlTableModel>
+#include <QtSql>
 #include <string>
 #include <vector>
 
