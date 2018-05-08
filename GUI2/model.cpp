@@ -2,11 +2,8 @@
 #include <QDebug>
 
 Model::Model() {
-    dataBase = QSqlDatabase::addDatabase("QMYSQL");
-    dataBase.setHostName("127.0.0.1");
-    dataBase.setDatabaseName("game");
-    dataBase.setUserName("root");
-    dataBase.setPassword("root");
+    dataBase = QSqlDatabase::addDatabase("QSQLITE");
+    dataBase.setDatabaseName("records.db");
 
     if(!dataBase.open()) {
         qDebug() << dataBase.lastError().text();
@@ -14,6 +11,16 @@ Model::Model() {
     else {
         qDebug() << "Success";
     }
+
+    QSqlQuery query = QSqlQuery(dataBase);
+    if(!query.exec("select * from highscores")) {
+        if(!query.exec("CREATE TABLE highscores (user_name VARCHAR(45) PRIMARY KEY "
+                       "UNIQUE NOT NULL, high_score INTEGER(11) NOT NULL DEFAULT 0)"))
+        {
+            qDebug() << "Failed to create table";
+        }
+    }
+
 }
 
 bool Model::userExists(std::string str) {
