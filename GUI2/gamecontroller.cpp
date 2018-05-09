@@ -7,13 +7,15 @@ using namespace std;
 GameController::GameController(QObject *parent) : QObject(parent) {
     regWindow = new RegistrationWindow();
     mainWindow = new MainMenuWindow();
+    delete mainWindow;
+
+    mainWindow = new MainMenuWindow();
     uChoiceWindow = new UserChoiceWindow();
-    gameScreen= new GameScreenView();
     recWindow = new RecordWindow();
     model = new Model();
 
-    std::vector<std::string> userNamesVec = model->getUserNames();
-    std::vector<std::string> userHighscores = model->getHighscores();
+    userNamesVec = model->getUserNames();
+    userHighscores = model->getHighscores();
 
     if(userNamesVec.size() != 0) {
         uChoiceWindow->show();
@@ -31,6 +33,7 @@ GameController::GameController(QObject *parent) : QObject(parent) {
     connect(mainWindow, SIGNAL(goButtonSignal()), SLOT(openGameScreen()));
     connect(mainWindow, SIGNAL(recordButtonSignal()), SLOT(openRecords()));
     connect(recWindow, SIGNAL(exitFromRecordsSignal()), SLOT(openMainWindow()));
+
 }
 
 void GameController::openMainWindow() {
@@ -38,6 +41,17 @@ void GameController::openMainWindow() {
     mainWindow->move(recWindow->pos());
     recWindow->close();
     mainWindow->show();
+}
+
+void GameController::backToMenuFromGameScreen()
+{
+
+    gameScreen->disconnect();
+    mainWindow->resize(gameScreen->width(),  gameScreen->height());
+    mainWindow->move(gameScreen->pos());
+    delete gameScreen;
+    mainWindow->show();
+
 }
 
 void GameController::regConfirmed() {
@@ -98,6 +112,9 @@ void GameController::userNameButtonClicked() { // click to name of the user in u
 }
 
 void GameController::openGameScreen() { // click to name of the user in user choice window
+
+    gameScreen= new GameScreenView();
+    connect(gameScreen, SIGNAL(escPressed()), SLOT(backToMenuFromGameScreen()));
     mainWindow->close();
     gameScreen->showFullScreen();
 }

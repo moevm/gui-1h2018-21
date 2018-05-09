@@ -16,6 +16,7 @@ class CoinItem : public QGraphicsPixmapItem
 
 public:
     CoinItem();
+    virtual ~CoinItem();
     std::vector<std::string> getCoinImageSources();
     int getCoinSpinningSpeed();
 

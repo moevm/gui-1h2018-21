@@ -203,7 +203,7 @@ border: 3px solid rgb(0, 19, 86);
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
-            <string>PushButton</string>
+            <string>Exit</string>
            </property>
           </widget>
          </item>

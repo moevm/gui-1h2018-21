@@ -11,6 +11,7 @@ class CarItem : public QGraphicsPixmapItem
 
 public:
     CarItem();
+    virtual ~CarItem();
     void setMovementSpeed(double speed);
     double getMovementSpeed();
 

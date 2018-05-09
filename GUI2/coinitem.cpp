@@ -16,6 +16,11 @@ CoinItem::CoinItem()
 
 }
 
+CoinItem::~CoinItem()
+{
+
+}
+
 std::vector<std::string> CoinItem::getCoinImageSources()
 {
     return coinImageSources;
