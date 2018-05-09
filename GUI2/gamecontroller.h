@@ -34,6 +34,7 @@ private:
 
     std::vector<std::string> userNamesVec;
     std::vector<std::string> userHighscores;
+    std::string userName;
 
     QSize windowHeight;
     QSize windowWidth;

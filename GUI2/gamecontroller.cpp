@@ -45,13 +45,11 @@ void GameController::openMainWindow() {
 
 void GameController::backToMenuFromGameScreen()
 {
-
-    gameScreen->disconnect();
-    mainWindow->resize(gameScreen->width(),  gameScreen->height());
+    model->updateRecord(userName, to_string(gameScreen->getFinalScore()));
     mainWindow->move(gameScreen->pos());
+    gameScreen->disconnect();
     delete gameScreen;
     mainWindow->show();
-
 }
 
 void GameController::regConfirmed() {
@@ -61,6 +59,7 @@ void GameController::regConfirmed() {
         return;
     } else {
     model->regUser(regWindow->getNewName());
+    this->userName = regWindow->getNewName();
     mainWindow->resize(regWindow->width(), regWindow->height());
     mainWindow->move(regWindow->pos());
     regWindow->close();
@@ -73,21 +72,17 @@ void GameController::openRecords() {
     std::vector<std::string> userHighscores = model->getHighscores();
 
     for(int i = 0; i < userNamesVec.size(); i++) {
-        for(int j = i; j < userNamesVec.size(); j++) {
-            if(stoi(userHighscores[i]) <= stoi(userHighscores[j])) {
-                string tmp_score = userHighscores[i];
-                string tmp_name = userNamesVec[i];
-
-                userHighscores[i] = userHighscores[j];
-                userNamesVec[i] = userNamesVec[j];
-
-                userNamesVec[j] = tmp_name;
-                userHighscores[j] = tmp_score;
+        for(int j = 0; j < userNamesVec.size() - i - 1; j++) {
+            if(stoi(userHighscores[j + 1]) >= stoi(userHighscores[j])) {
+                swap(userHighscores[j], userHighscores[j + 1]);
+                swap(userNamesVec[j], userNamesVec[j + 1]);
             }
         }
     }
 
-
+    for(int i = 0; i < userNamesVec.size(); i++) {
+        recWindow->addUserName(userNamesVec[i] + "   " + userHighscores[i]);
+    }
 
 
     recWindow->resize(mainWindow->width(),  mainWindow->height());
