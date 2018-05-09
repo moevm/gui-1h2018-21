@@ -36,6 +36,7 @@ private:
     QWidget *scrollAreaWidget;
     QScrollArea *scrollArea;
     QVBoxLayout *scrollAreaWidgetLayout;
+    QPushButton *exitButton;
 
     void paintEvent(QPaintEvent *e);
 };

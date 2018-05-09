@@ -12,7 +12,18 @@ RecordWindow::RecordWindow(QWidget *parent) :
     scrollArea = new QScrollArea(ui->widget_2);
     scrollAreaWidget = new QWidget;
     scrollAreaWidgetLayout = new QVBoxLayout(scrollAreaWidget);
+    exitButton = new QPushButton("Back");
 
+    QGraphicsDropShadowEffect *effectExitButton = new QGraphicsDropShadowEffect;
+    effectExitButton->setBlurRadius(2);
+    effectExitButton->setXOffset(3);
+    effectExitButton->setYOffset(2);
+    effectExitButton->setColor(Qt::black);
+
+    exitButton->setMaximumWidth(96);
+    exitButton->setMinimumWidth(96);
+    exitButton->setGraphicsEffect(effectExitButton);
+    exitButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     scrollAreaWidget->setStyleSheet("background-color: rgb(0, 99, 121); border: 0px;");
     scrollArea->setStyleSheet("border: 0px; background-color: rgb(232, 160, 171); ");
@@ -22,8 +33,10 @@ RecordWindow::RecordWindow(QWidget *parent) :
     scrollArea->setWidgetResizable(true);
 
     ui->widget_2->layout()->addWidget(scrollArea);
+    ui->widget_2->layout()->addWidget(exitButton);
+    ui->widget_2->layout()->setAlignment(exitButton, Qt::AlignCenter);
 
-    connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(exitFromRecordsClicked()));
+    connect(exitButton, SIGNAL(clicked()), this, SLOT(exitFromRecordsClicked()));
 }
 
 RecordWindow::~RecordWindow()
@@ -44,24 +57,24 @@ void RecordWindow::addUserName(std::string userName){
 
     QLabel *usName = new QLabel(qUserName, this);
 
+
     effectWidget->setBlurRadius(5);
-    effectWidget->setXOffset(5);
-    effectWidget->setYOffset(5);
-    effectWidget->setColor(Qt::black);
+    effectWidget->setXOffset(3);
+    effectWidget->setYOffset(3);
+    effectWidget->setColor(QColor(255, 0, 255));
 
     effectLabel->setBlurRadius(2);
     effectLabel->setXOffset(2);
     effectLabel->setYOffset(2);
     effectLabel->setColor(Qt::black);
 
-
-
     usName->setStyleSheet("color:rgb(203, 232, 193); font-size: 21px; font: bold; shadow: 2px");
-    usName->setCursor(QCursor(Qt::PointingHandCursor));
 
+    //ui->exitButton->setGraphicsEffect(effectExitButton);
     ui->widget_2->setGraphicsEffect(effectWidget);
     ui->label->setGraphicsEffect(effectLabel);
 
+    scrollAreaWidgetLayout->setAlignment(Qt::AlignCenter);
     scrollAreaWidgetLayout->addWidget(usName);
     scrollAreaWidget->adjustSize();
 
