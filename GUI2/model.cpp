@@ -23,6 +23,13 @@ Model::Model() {
 
 }
 
+void Model::updateRecord(std::string user_name, std::string str) {
+    QSqlQuery query;
+    query.exec("UPDATE highscores SET high_score = "
+               + QString::fromStdString(str) + " WHERE user_name = "
+               + QString::fromStdString(user_name));
+}
+
 bool Model::userExists(std::string str) {
     QSqlQuery query = QSqlQuery("SELECT user_name FROM highscores");
 

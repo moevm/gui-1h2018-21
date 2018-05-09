@@ -15,6 +15,8 @@ public:
 
    bool userExists(std::string str);
    void regUser(std::string str);
+   void updateRecord(std::string user_name, std::string str);
+
    std::vector <std::string> getUserNames();
    std::vector <std::string> getHighscores();
 

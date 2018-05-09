@@ -15,17 +15,31 @@ GameController::GameController(QObject *parent) : QObject(parent) {
     std::vector<std::string> userNamesVec = model->getUserNames();
     std::vector<std::string> userHighscores = model->getHighscores();
 
-        if(userNamesVec.size() != 0) {
-
-            uChoiceWindow->show();
-            for(int i = 0; i < userNamesVec.size(); i++) {
+    if(userNamesVec.size() != 0) {
+        uChoiceWindow->show();
+        for(int i = 0; i < userNamesVec.size(); i++) {
                 uChoiceWindow->addUserNameButton(userNamesVec[i]);
-                recWindow->addUserName(userNamesVec[i] + "              " + userHighscores[i]);
+        }
+    }
+    else {
+        regWindow->show();
+    }
+
+    for(int i = 0; i < userNamesVec.size(); i++) {
+        for(int j = i; j < userNamesVec.size(); j++) {
+            if(stoi(userHighscores[i]) <= stoi(userHighscores[j])) {
+                string tmp_score = userHighscores[i];
+                string tmp_name = userNamesVec[i];
+
+                userHighscores[i] = userHighscores[j];
+                userNamesVec[i] = userNamesVec[j];
+
+                userNamesVec[j] = tmp_name;
+                userHighscores[j] = tmp_score;
             }
         }
-        else {
-            regWindow->show();
-        }
+    }
+
 
     connect(regWindow, SIGNAL(regButtonSignal()), this, SLOT(regConfirmed()));
     connect(uChoiceWindow, SIGNAL(addUserButtonSignal()), SLOT(addNewUserButtonClicked()));
