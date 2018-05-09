@@ -36,6 +36,7 @@ GameController::GameController(QObject *parent) : QObject(parent) {
 }
 
 void GameController::openMainWindow() {
+    mainWindow->resize(recWindow->width(),  recWindow->height());
     mainWindow->move(recWindow->pos());
     recWindow->close();
     mainWindow->show();
@@ -56,6 +57,7 @@ void GameController::regConfirmed() {
 }
 
 void GameController::openRecords() {
+    recWindow->resize(mainWindow->width(),  mainWindow->height());
     recWindow->move(mainWindow->pos());
     mainWindow->close();
     recWindow->show();
