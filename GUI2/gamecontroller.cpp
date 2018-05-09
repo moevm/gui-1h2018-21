@@ -25,22 +25,6 @@ GameController::GameController(QObject *parent) : QObject(parent) {
         regWindow->show();
     }
 
-    for(int i = 0; i < userNamesVec.size(); i++) {
-        for(int j = i; j < userNamesVec.size(); j++) {
-            if(stoi(userHighscores[i]) <= stoi(userHighscores[j])) {
-                string tmp_score = userHighscores[i];
-                string tmp_name = userNamesVec[i];
-
-                userHighscores[i] = userHighscores[j];
-                userNamesVec[i] = userNamesVec[j];
-
-                userNamesVec[j] = tmp_name;
-                userHighscores[j] = tmp_score;
-            }
-        }
-    }
-
-
     connect(regWindow, SIGNAL(regButtonSignal()), this, SLOT(regConfirmed()));
     connect(uChoiceWindow, SIGNAL(addUserButtonSignal()), SLOT(addNewUserButtonClicked()));
     connect(uChoiceWindow, SIGNAL(userNameButtonSignal()), SLOT(userNameButtonClicked()));
@@ -71,6 +55,27 @@ void GameController::regConfirmed() {
 }
 
 void GameController::openRecords() {
+    std::vector<std::string> userNamesVec = model->getUserNames();
+    std::vector<std::string> userHighscores = model->getHighscores();
+
+    for(int i = 0; i < userNamesVec.size(); i++) {
+        for(int j = i; j < userNamesVec.size(); j++) {
+            if(stoi(userHighscores[i]) <= stoi(userHighscores[j])) {
+                string tmp_score = userHighscores[i];
+                string tmp_name = userNamesVec[i];
+
+                userHighscores[i] = userHighscores[j];
+                userNamesVec[i] = userNamesVec[j];
+
+                userNamesVec[j] = tmp_name;
+                userHighscores[j] = tmp_score;
+            }
+        }
+    }
+
+
+
+
     recWindow->resize(mainWindow->width(),  mainWindow->height());
     recWindow->move(mainWindow->pos());
     mainWindow->close();
