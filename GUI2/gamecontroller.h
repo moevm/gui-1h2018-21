@@ -23,6 +23,7 @@ private slots:
     void openGameScreen();
     void openRecords();
     void openMainWindow();
+    void backToMenuFromGameScreen();
 
 private:
     UserChoiceWindow *uChoiceWindow;
@@ -30,6 +31,9 @@ private:
     MainMenuWindow *mainWindow;
     RecordWindow *recWindow;
     GameScreenView *gameScreen;
+
+    std::vector<std::string> userNamesVec;
+    std::vector<std::string> userHighscores;
 
     QSize windowHeight;
     QSize windowWidth;

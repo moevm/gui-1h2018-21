@@ -25,18 +25,23 @@ public:
     explicit GameScreenView(QWidget *parent = 0);
     int getDesktopHeight();
     int getDesktopWidth();
+    int getFinalScore();
     int getSceneLength();
     void setSceneLength(int len);
     void putScoreCounter();
     void putCoins();
     void changeScoreCounter();
     void wheelEvent(QWheelEvent * event);
-    ~GameScreenView();
+    virtual ~GameScreenView();
+
 
 public slots:
     void updateCoinImage();
     void updateSceneState();
     void updateAcceleration();
+
+signals:
+    void escPressed();
 
 private:
     QGraphicsScene *scene;
@@ -53,6 +58,7 @@ private:
     int sceneMovementSpeed;
     int sceneAcceleration;
     int coinsNumber;
+    int finalScore;
     int currentScore;
     int coinPoints;
     int sceneTimerRate;

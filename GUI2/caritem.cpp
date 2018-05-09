@@ -8,6 +8,11 @@ CarItem::CarItem()
     setScale(0.25);
 }
 
+CarItem::~CarItem()
+{
+
+}
+
 void CarItem::setMovementSpeed(double speed)
 {
     movementSpeed = speed;

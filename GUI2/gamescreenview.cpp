@@ -10,11 +10,12 @@ GameScreenView::GameScreenView(QWidget *parent)
         accelerationTimer = new QTimer();
         scene = new QGraphicsScene();
         scoreItemGroup = new QGraphicsItemGroup();
+        winLabel = new WinLabelItem(getDesktopHeight(), getDesktopWidth());
 
         upCarMovementIsBlocked = false;
         downCarMovementIsBlocked = false;
         sceneMovementSpeed = 5;
-        sceneAcceleration = 1;
+        sceneAcceleration = 1000;
         coinsNumber = 20;
         coinPoints = 25;
         sceneTimerRate = 30;
@@ -23,6 +24,7 @@ GameScreenView::GameScreenView(QWidget *parent)
         scoreLength = 4;
         coinVecIndex = 0;
         currentScore = 0;
+        finalScore = 0;
 
         putCoins();
         putScoreCounter();
@@ -62,6 +64,15 @@ GameScreenView::GameScreenView(QWidget *parent)
 
 GameScreenView::~GameScreenView(){
 
+    delete car;
+    delete coinTimer;
+    delete sceneTimer;
+    delete accelerationTimer;
+    delete scoreItemGroup;
+    delete winLabel;
+    std::vector<CoinItem*>().swap(coins);
+    std::vector<NumberItem*>().swap(scoreNumsVector);
+    delete scene;
 
 }
 
@@ -81,6 +92,9 @@ void GameScreenView::keyPressEvent(QKeyEvent *keyEvent){
             if(!upCarMovementIsBlocked)
                 car->moveBy(0, -car->getMovementSpeed());
             break;
+        case Qt::Key_Escape:
+            emit escPressed();
+            break;
         default:
             break;
     }
@@ -98,6 +112,11 @@ int GameScreenView::getDesktopWidth(){
     QRect  screenGeometry = screen->geometry();
     int width = screenGeometry.width();
     return width;
+}
+
+int GameScreenView::getFinalScore()
+{
+    return finalScore;
 }
 
 void GameScreenView::setSceneLength(int len)
@@ -261,7 +280,6 @@ void GameScreenView::updateSceneState()
         sceneTimer->stop();
         accelerationTimer->stop();
 
-        winLabel = new WinLabelItem(getDesktopHeight(), getDesktopWidth());
         scene->addItem(winLabel);
 
         int winLocX = mapToScene(pos()).x()+getDesktopWidth()/2 - winLabel->pixmap().width() * (winLabel->scale() / 2);
@@ -269,6 +287,8 @@ void GameScreenView::updateSceneState()
 
         winLabel->setPos(winLocX, winLocY);
         winLabel->animatedMoveToScenePos(winLocX, getDesktopHeight()/2 - winLabel->pixmap().height() * 2);
+
+        finalScore = currentScore;
 
     }
 }

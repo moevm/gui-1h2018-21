@@ -16,10 +16,12 @@ class WinLabelItem : public QGraphicsPixmapItem
 
 public:
     WinLabelItem(int desktopHeight, int desktopWidth);
+    virtual ~WinLabelItem();
     void animatedMoveToScenePos(int x, int y);
 
 private:
-
+    QTimeLine *timer;
+    QGraphicsItemAnimation *animation;
 };
 
 #endif // WINLABELITEM_H
