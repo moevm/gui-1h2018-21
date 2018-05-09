@@ -13,12 +13,14 @@ GameController::GameController(QObject *parent) : QObject(parent) {
     model = new Model();
 
     std::vector<std::string> userNamesVec = model->getUserNames();
+    std::vector<std::string> userHighscores = model->getHighscores();
 
         if(userNamesVec.size() != 0) {
 
             uChoiceWindow->show();
-            for(int i = 0; i < userNamesVec.size(); i++){
+            for(int i = 0; i < userNamesVec.size(); i++) {
                 uChoiceWindow->addUserNameButton(userNamesVec[i]);
+                recWindow->addUserName(userNamesVec[i] + "              " + userHighscores[i]);
             }
         }
         else {
@@ -29,6 +31,14 @@ GameController::GameController(QObject *parent) : QObject(parent) {
     connect(uChoiceWindow, SIGNAL(addUserButtonSignal()), SLOT(addNewUserButtonClicked()));
     connect(uChoiceWindow, SIGNAL(userNameButtonSignal()), SLOT(userNameButtonClicked()));
     connect(mainWindow, SIGNAL(goButtonSignal()), SLOT(openGameScreen()));
+    connect(mainWindow, SIGNAL(recordButtonSignal()), SLOT(openRecords()));
+    connect(recWindow, SIGNAL(exitFromRecordsSignal()), SLOT(openMainWindow()));
+}
+
+void GameController::openMainWindow() {
+    mainWindow->move(recWindow->pos());
+    recWindow->close();
+    mainWindow->show();
 }
 
 void GameController::regConfirmed() {
@@ -45,12 +55,17 @@ void GameController::regConfirmed() {
     }
 }
 
+void GameController::openRecords() {
+    recWindow->move(mainWindow->pos());
+    mainWindow->close();
+    recWindow->show();
+}
+
 void GameController::addNewUserButtonClicked() { // pushing button "Enter" in registration window
     regWindow->resize(uChoiceWindow->width(), uChoiceWindow->height());
     regWindow->move(uChoiceWindow->pos());
     uChoiceWindow->close();
     regWindow->show();
-
 }
 
 void GameController::userNameButtonClicked() { // click to name of the user in user choice window

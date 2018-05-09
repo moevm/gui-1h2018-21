@@ -16,7 +16,7 @@ public:
    bool userExists(std::string str);
    void regUser(std::string str);
    std::vector <std::string> getUserNames();
-
+   std::vector <std::string> getHighscores();
 
 };
 

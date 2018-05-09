@@ -21,6 +21,8 @@ private slots:
     void addNewUserButtonClicked();
     void userNameButtonClicked();
     void openGameScreen();
+    void openRecords();
+    void openMainWindow();
 
 private:
     UserChoiceWindow *uChoiceWindow;

@@ -52,7 +52,6 @@ void RegistrationWindow::nickNameInputed(QString nick){
     newName = nick.toUtf8().constData();
 }
 
-
 std::string RegistrationWindow::getNewName(){
     return newName;
 }

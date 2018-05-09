@@ -25,10 +25,10 @@ public:
     ~RecordWindow();
 
 private slots:
-    //void exitToMenuButtonClicked();
+    void exitFromRecordsClicked();
 
 signals:
-   // void exitFromRecords();
+    void exitFromRecordsSignal();
 
 private:
     Ui::RecordWindow *ui;

@@ -14,7 +14,7 @@ RecordWindow::RecordWindow(QWidget *parent) :
     scrollAreaWidgetLayout = new QVBoxLayout(scrollAreaWidget);
 
 
-    scrollAreaWidget->setStyleSheet("background-color: rgb(232, 160, 171); border: 0px;");
+    scrollAreaWidget->setStyleSheet("background-color: rgb(0, 99, 121); border: 0px;");
     scrollArea->setStyleSheet("border: 0px; background-color: rgb(232, 160, 171); ");
     scrollArea->setMinimumHeight(100);
     scrollArea->setAlignment(Qt::AlignCenter);
@@ -23,6 +23,7 @@ RecordWindow::RecordWindow(QWidget *parent) :
 
     ui->widget_2->layout()->addWidget(scrollArea);
 
+    connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(exitFromRecordsClicked()));
 }
 
 RecordWindow::~RecordWindow()
@@ -30,6 +31,9 @@ RecordWindow::~RecordWindow()
     delete ui;
 }
 
+void RecordWindow::exitFromRecordsClicked() {
+    emit exitFromRecordsSignal();
+}
 
 void RecordWindow::addUserName(std::string userName){
 

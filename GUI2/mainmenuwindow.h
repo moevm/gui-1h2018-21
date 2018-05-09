@@ -18,9 +18,11 @@ public:
 
 signals:
     void goButtonSignal();
+    void recordButtonSignal();
 
 private slots:
     void goButtonClicked();
+    void recordButtonClicked();
 
 private:
     Ui::MainMenuWindow *ui;

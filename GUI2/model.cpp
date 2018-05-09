@@ -48,6 +48,19 @@ std::vector <std::string> Model::getUserNames() {
     return userNames;
 }
 
+std::vector <std::string> Model::getHighscores() {
+    QSqlQuery query = QSqlQuery("SELECT high_score FROM highscores");
+
+    std::vector <std::string> highScores;
+
+    while(query.next()) {
+        QString string = query.value(0).toString();
+        highScores.push_back(string.toStdString());
+    }
+
+    return highScores;
+}
+
 void Model::regUser(std::string str) {
     QSqlQuery query = QSqlQuery(dataBase);
 
