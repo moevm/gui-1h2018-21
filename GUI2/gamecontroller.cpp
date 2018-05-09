@@ -9,11 +9,13 @@ GameController::GameController(QObject *parent) : QObject(parent) {
     mainWindow = new MainMenuWindow();
     uChoiceWindow = new UserChoiceWindow();
     gameScreen= new GameScreenView();
+    recWindow = new RecordWindow();
     model = new Model();
 
     std::vector<std::string> userNamesVec = model->getUserNames();
 
         if(userNamesVec.size() != 0) {
+
             uChoiceWindow->show();
             for(int i = 0; i < userNamesVec.size(); i++){
                 uChoiceWindow->addUserNameButton(userNamesVec[i]);

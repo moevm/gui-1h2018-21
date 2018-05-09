@@ -34,7 +34,8 @@ SOURCES += \
     caritem.cpp \
     coinitem.cpp \
     winlabelitem.cpp \
-    numberitem.cpp
+    numberitem.cpp \
+    recordwindow.cpp
 
 HEADERS += \
         registrationwindow.h \
@@ -47,12 +48,14 @@ HEADERS += \
     caritem.h \
     coinitem.h \
     winlabelitem.h \
-    numberitem.h
+    numberitem.h \
+    recordwindow.h
 
 FORMS += \
         registrationwindow.ui \
     mainmenuwindow.ui \
-    userchoicewindow.ui
+    userchoicewindow.ui \
+    recordwindow.ui
 
 RESOURCES += \
     gameresources.qrc

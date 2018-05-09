@@ -5,6 +5,9 @@
 #include <string>
 #include <QScrollArea>
 #include <QLayout>
+#include <QPixmap>
+#include <QPainter>
+#include <QGraphicsEffect>
 #include <QPushButton>
 
 namespace Ui {

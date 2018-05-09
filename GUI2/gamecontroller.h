@@ -7,6 +7,7 @@
 #include "userchoicewindow.h"
 #include "mainmenuwindow.h"
 #include "gamescreenview.h"
+#include "recordwindow.h"
 #include "model.h"
 
 class GameController : public QObject
@@ -25,6 +26,7 @@ private:
     UserChoiceWindow *uChoiceWindow;
     RegistrationWindow *regWindow;
     MainMenuWindow *mainWindow;
+    RecordWindow *recWindow;
     GameScreenView *gameScreen;
 
     QSize windowHeight;
