@@ -3,11 +3,11 @@
 
 #include <QObject>
 #include <QKeyEvent>
-#include "registrationwindow.h"
-#include "userchoicewindow.h"
-#include "mainmenuwindow.h"
+#include "windows/registrationwindow.h"
+#include "windows/userchoicewindow.h"
+#include "windows/mainmenuwindow.h"
+#include "windows/recordwindow.h"
 #include "gamescreenview.h"
-#include "recordwindow.h"
 #include "model.h"
 
 class GameController : public QObject

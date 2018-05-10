@@ -15,7 +15,7 @@ GameScreenView::GameScreenView(QWidget *parent)
         upCarMovementIsBlocked = false;
         downCarMovementIsBlocked = false;
         sceneMovementSpeed = 5;
-        sceneAcceleration = 100;
+        sceneAcceleration = 1;
         coinsNumber = 20;
         coinPoints = 25;
         sceneTimerRate = 30;

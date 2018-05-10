@@ -22,42 +22,41 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
 SOURCES += \
-        main.cpp \
-        registrationwindow.cpp \
-    gamecontroller.cpp \
-    mainmenuwindow.cpp \
+    main.cpp \
     model.cpp \
-    userchoicewindow.cpp \
+    gamecontroller.cpp \
     gamescreenview.cpp \
-    caritem.cpp \
-    coinitem.cpp \
-    winlabelitem.cpp \
-    numberitem.cpp \
-    recordwindow.cpp \
-    usernamebutton.cpp
+    usernamebutton.cpp \
+    items/caritem.cpp \
+    items/coinitem.cpp \
+    items/numberitem.cpp \
+    items/winlabelitem.cpp \
+    windows/recordwindow.cpp \
+    windows/mainmenuwindow.cpp \
+    windows/userchoicewindow.cpp \
+    windows/registrationwindow.cpp \
 
 HEADERS += \
-        registrationwindow.h \
+    main.h \
+    model.h \
     gamecontroller.h \
-    mainmenuwindow.h \
-    model.h \
-    model.h \
-    userchoicewindow.h \
     gamescreenview.h \
-    caritem.h \
-    coinitem.h \
-    winlabelitem.h \
-    numberitem.h \
-    recordwindow.h \
-    usernamebutton.h
+    usernamebutton.h \
+    items/caritem.h \
+    items/coinitem.h \
+    items/numberitem.h \
+    items/winlabelitem.h \
+    windows/recordwindow.h \
+    windows/mainmenuwindow.h \
+    windows/userchoicewindow.h \
+    windows/registrationwindow.h \
 
 FORMS += \
-        registrationwindow.ui \
-    mainmenuwindow.ui \
-    userchoicewindow.ui \
-    recordwindow.ui
+    windows/recordwindow.ui \
+    windows/mainmenuwindow.ui \
+    windows/userchoicewindow.ui \
+    windows/registrationwindow.ui \
 
 RESOURCES += \
     gameresources.qrc

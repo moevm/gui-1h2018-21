@@ -11,12 +11,12 @@
 #include <QApplication>
 #include <vector>
 #include <QScrollBar>
-#include "caritem.h"
-#include "coinitem.h"
-#include "winlabelitem.h"
+#include "items/caritem.h"
+#include "items/coinitem.h"
+#include "items/winlabelitem.h"
+#include "items/numberitem.h"
 #include <stdlib.h>
 #include <time.h>
-#include "numberitem.h"
 
 class GameScreenView: public QGraphicsView
 {
