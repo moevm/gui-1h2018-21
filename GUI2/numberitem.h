@@ -11,7 +11,7 @@ class NumberItem : public QGraphicsPixmapItem
 
 public:
     NumberItem();
-
+    virtual ~NumberItem();
 private:
 
 };

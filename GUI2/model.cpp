@@ -20,7 +20,16 @@ Model::Model() {
             qDebug() << "Failed to create table";
         }
     }
+}
 
+void Model::updateRecord(std::string user_name, std::string str) {
+    QSqlQuery query = QSqlQuery(dataBase);
+    if(!query.exec("UPDATE highscores SET high_score = "
+               + QString::fromStdString(str) + " WHERE user_name = '"
+                   + QString::fromStdString(user_name) + "'"))
+    {
+        qDebug() << query.lastError().text();
+    }
 }
 
 bool Model::userExists(std::string str) {
@@ -36,7 +45,7 @@ bool Model::userExists(std::string str) {
 }
 
 std::vector <std::string> Model::getUserNames() {
-    QSqlQuery query = QSqlQuery("SELECT user_name FROM highscores");
+    QSqlQuery query = QSqlQuery("SELECT * FROM highscores");
 
     std::vector <std::string> userNames;
 
@@ -46,6 +55,19 @@ std::vector <std::string> Model::getUserNames() {
     }
 
     return userNames;
+}
+
+std::vector <std::string> Model::getHighscores() {
+    QSqlQuery query = QSqlQuery("SELECT * FROM highscores");
+
+    std::vector <std::string> highScores;
+
+    while(query.next()) {
+        QString string = query.value(1).toString();
+        highScores.push_back(string.toStdString());
+    }
+
+    return highScores;
 }
 
 void Model::regUser(std::string str) {

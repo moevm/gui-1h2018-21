@@ -50,6 +50,7 @@ MainMenuWindow::MainMenuWindow(QWidget *parent) :
   ui->recButton->setGraphicsEffect(effectButton2);
 
   connect(ui->goButton, SIGNAL(clicked()), this, SLOT(goButtonClicked()));
+  connect(ui->recButton, SIGNAL(clicked()), this, SLOT(recordButtonClicked()));
 }
 
 MainMenuWindow::~MainMenuWindow()
@@ -64,6 +65,10 @@ void MainMenuWindow::drawCurrentUserName(std::string userName){ // to do
 
 void MainMenuWindow::goButtonClicked(){
      emit goButtonSignal();
+}
+
+void MainMenuWindow::recordButtonClicked() {
+    emit recordButtonSignal();
 }
 
 void MainMenuWindow::paintEvent(QPaintEvent *e)

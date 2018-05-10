@@ -5,7 +5,11 @@
 #include <string>
 #include <QScrollArea>
 #include <QLayout>
+#include <QPixmap>
+#include <QPainter>
+#include <QGraphicsEffect>
 #include <QPushButton>
+#include <usernamebutton.h>
 
 namespace Ui {
 class UserChoiceWindow;
@@ -22,11 +26,11 @@ public:
 
 private slots:
     void addUserButtonClicked();
-    void userNameButtonClicked();
+    void userNameButtonClicked(QString);
 
 signals:
     void addUserButtonSignal();
-    void userNameButtonSignal();
+    void userNameButtonSignal(std::string);
 
 private:
     Ui::UserChoiceWindow *ui;
