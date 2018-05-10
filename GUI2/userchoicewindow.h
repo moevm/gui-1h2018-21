@@ -29,7 +29,7 @@ private slots:
 
 signals:
     void addUserButtonSignal();
-    void userNameButtonSignal();
+    void userNameButtonSignal(std::string);
 
 private:
     Ui::UserChoiceWindow *ui;

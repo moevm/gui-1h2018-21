@@ -19,7 +19,7 @@ public:
 private slots:
     void regConfirmed();
     void addNewUserButtonClicked();
-    void userNameButtonClicked();
+    void userNameButtonClicked(std::string);
     void openGameScreen();
     void openRecords();
     void openMainWindow();
@@ -34,10 +34,7 @@ private:
 
     std::vector<std::string> userNamesVec;
     std::vector<std::string> userHighscores;
-    std::string userName;
-
-    QSize windowHeight;
-    QSize windowWidth;
+    std::string currentUserName;
     Model *model;
 };
 

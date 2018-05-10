@@ -1,6 +1,8 @@
 #include "recordwindow.h"
 #include "ui_recordwindow.h"
 
+#include <iostream>
+
 
 RecordWindow::RecordWindow(QWidget *parent) :
     QWidget(parent),
@@ -70,7 +72,6 @@ void RecordWindow::addUserName(std::string userName){
 
     usName->setStyleSheet("color:rgb(203, 232, 193); font-size: 21px; font: bold; shadow: 2px");
 
-    //ui->exitButton->setGraphicsEffect(effectExitButton);
     ui->widget_2->setGraphicsEffect(effectWidget);
     ui->label->setGraphicsEffect(effectLabel);
 
@@ -79,6 +80,20 @@ void RecordWindow::addUserName(std::string userName){
     scrollAreaWidget->adjustSize();
 
 
+}
+
+void RecordWindow::cleanRecords(){
+
+    QLayoutItem *item;
+    while((item = scrollAreaWidgetLayout->takeAt(0))) {
+           if (item->layout()) {
+               delete item->layout();
+           }
+           if (item->widget()) {
+               delete item->widget();
+           }
+           delete item;
+       }
 }
 
 void RecordWindow::paintEvent(QPaintEvent *e)

@@ -22,6 +22,7 @@ class RecordWindow : public QWidget
 public:
     explicit RecordWindow(QWidget *parent = nullptr);
     void addUserName(std::string userName);
+    void cleanRecords();
     ~RecordWindow();
 
 private slots:

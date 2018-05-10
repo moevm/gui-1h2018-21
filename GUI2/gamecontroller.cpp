@@ -29,7 +29,7 @@ GameController::GameController(QObject *parent) : QObject(parent) {
 
     connect(regWindow, SIGNAL(regButtonSignal()), this, SLOT(regConfirmed()));
     connect(uChoiceWindow, SIGNAL(addUserButtonSignal()), SLOT(addNewUserButtonClicked()));
-    connect(uChoiceWindow, SIGNAL(userNameButtonSignal()), SLOT(userNameButtonClicked()));
+    connect(uChoiceWindow, SIGNAL(userNameButtonSignal(std::string)), SLOT(userNameButtonClicked(std::string)));
     connect(mainWindow, SIGNAL(goButtonSignal()), SLOT(openGameScreen()));
     connect(mainWindow, SIGNAL(recordButtonSignal()), SLOT(openRecords()));
     connect(recWindow, SIGNAL(exitFromRecordsSignal()), SLOT(openMainWindow()));
@@ -45,8 +45,7 @@ void GameController::openMainWindow() {
 
 void GameController::backToMenuFromGameScreen()
 {
-    model->updateRecord(userName, to_string(gameScreen->getFinalScore()));
-    mainWindow->move(gameScreen->pos());
+    model->updateRecord(currentUserName, to_string(gameScreen->getFinalScore()));
     gameScreen->disconnect();
     delete gameScreen;
     mainWindow->show();
@@ -59,7 +58,7 @@ void GameController::regConfirmed() {
         return;
     } else {
     model->regUser(regWindow->getNewName());
-    this->userName = regWindow->getNewName();
+    this->currentUserName = regWindow->getNewName();
     mainWindow->resize(regWindow->width(), regWindow->height());
     mainWindow->move(regWindow->pos());
     regWindow->close();
@@ -68,6 +67,8 @@ void GameController::regConfirmed() {
 }
 
 void GameController::openRecords() {
+
+    recWindow->cleanRecords();
     std::vector<std::string> userNamesVec = model->getUserNames();
     std::vector<std::string> userHighscores = model->getHighscores();
 
@@ -80,10 +81,10 @@ void GameController::openRecords() {
         }
     }
 
+
     for(int i = 0; i < userNamesVec.size(); i++) {
         recWindow->addUserName(userNamesVec[i] + "   " + userHighscores[i]);
     }
-
 
     recWindow->resize(mainWindow->width(),  mainWindow->height());
     recWindow->move(mainWindow->pos());
@@ -98,7 +99,11 @@ void GameController::addNewUserButtonClicked() { // pushing button "Enter" in re
     regWindow->show();
 }
 
-void GameController::userNameButtonClicked() { // click to name of the user in user choice window
+void GameController::userNameButtonClicked(std::string clickedUserName) { // click to name of the user in user choice window
+
+    currentUserName = clickedUserName;
+
+    std::cout << currentUserName << std::endl;
     mainWindow->resize(uChoiceWindow->width(), uChoiceWindow->height());
     mainWindow->move(uChoiceWindow->pos());
     uChoiceWindow->close();

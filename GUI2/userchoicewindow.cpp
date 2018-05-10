@@ -50,6 +50,7 @@ void UserChoiceWindow::addUserNameButton(std::string userName){
 
     QString qUserName = QString::fromStdString(userName);
 
+
     QGraphicsDropShadowEffect *effectWidget = new QGraphicsDropShadowEffect;
     QGraphicsDropShadowEffect *effectLabel = new QGraphicsDropShadowEffect;
 
@@ -85,7 +86,7 @@ void UserChoiceWindow::addUserButtonClicked(){
 }
 
 void UserChoiceWindow::userNameButtonClicked(){
-    emit userNameButtonSignal();
+    emit userNameButtonSignal(clickedUserName);
 }
 
 void UserChoiceWindow::paintEvent(QPaintEvent *e)
