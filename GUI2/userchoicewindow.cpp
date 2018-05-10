@@ -54,7 +54,7 @@ void UserChoiceWindow::addUserNameButton(std::string userName){
     QGraphicsDropShadowEffect *effectWidget = new QGraphicsDropShadowEffect;
     QGraphicsDropShadowEffect *effectLabel = new QGraphicsDropShadowEffect;
 
-    QPushButton *userNameButton = new QPushButton(qUserName, this);
+    UserNameButton *userNameButton = new UserNameButton(qUserName, this);
 
     effectWidget->setBlurRadius(5);
     effectWidget->setXOffset(5);
@@ -78,14 +78,16 @@ void UserChoiceWindow::addUserNameButton(std::string userName){
     scrollAreaWidget->adjustSize();
 
 
-    connect(userNameButton, SIGNAL(clicked()), SLOT(userNameButtonClicked()));
+    connect(userNameButton, SIGNAL(userNameButtonSignal(QString)), SLOT(userNameButtonClicked(QString)));
 }
 
 void UserChoiceWindow::addUserButtonClicked(){
     emit addUserButtonSignal();
 }
 
-void UserChoiceWindow::userNameButtonClicked(){
+void UserChoiceWindow::userNameButtonClicked(QString usName){
+
+    clickedUserName = usName.toUtf8().constData();
     emit userNameButtonSignal(clickedUserName);
 }
 

@@ -35,7 +35,8 @@ SOURCES += \
     coinitem.cpp \
     winlabelitem.cpp \
     numberitem.cpp \
-    recordwindow.cpp
+    recordwindow.cpp \
+    usernamebutton.cpp
 
 HEADERS += \
         registrationwindow.h \
@@ -49,7 +50,8 @@ HEADERS += \
     coinitem.h \
     winlabelitem.h \
     numberitem.h \
-    recordwindow.h
+    recordwindow.h \
+    usernamebutton.h
 
 FORMS += \
         registrationwindow.ui \

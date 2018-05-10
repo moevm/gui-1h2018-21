@@ -29,7 +29,7 @@ GameController::GameController(QObject *parent) : QObject(parent) {
 
     connect(regWindow, SIGNAL(regButtonSignal()), this, SLOT(regConfirmed()));
     connect(uChoiceWindow, SIGNAL(addUserButtonSignal()), SLOT(addNewUserButtonClicked()));
-    connect(uChoiceWindow, SIGNAL(userNameButtonSignal(std::string)), SLOT(userNameButtonClicked(std::string)));
+    connect(uChoiceWindow, SIGNAL(userNameButtonSignal(std::string)), this, SLOT(userNameButtonClicked(std::string)));
     connect(mainWindow, SIGNAL(goButtonSignal()), SLOT(openGameScreen()));
     connect(mainWindow, SIGNAL(recordButtonSignal()), SLOT(openRecords()));
     connect(recWindow, SIGNAL(exitFromRecordsSignal()), SLOT(openMainWindow()));
@@ -103,7 +103,6 @@ void GameController::userNameButtonClicked(std::string clickedUserName) { // cli
 
     currentUserName = clickedUserName;
 
-    std::cout << currentUserName << std::endl;
     mainWindow->resize(uChoiceWindow->width(), uChoiceWindow->height());
     mainWindow->move(uChoiceWindow->pos());
     uChoiceWindow->close();
